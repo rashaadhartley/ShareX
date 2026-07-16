@@ -1438,7 +1438,7 @@ namespace ShareX
                 nameParser.Parse(TaskSettings.UploadSettings.NameFormatPattern);
 
             nameParser.WindowText = Text;
-            nameParser.ProcessName = "ShareX";
+            nameParser.ProcessName = Program.AppName;
 
             lblNameFormatPatternPreviewActiveWindow.Text = Resources.TaskSettingsForm_txtNameFormatPatternActiveWindow_TextChanged_Preview_ + " " +
                 nameParser.Parse(TaskSettings.UploadSettings.NameFormatPatternActiveWindow);
