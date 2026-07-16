@@ -482,7 +482,7 @@ namespace ShareX
             catch (Exception e)
             {
                 DebugHelper.WriteException(e);
-                MessageBox.Show("Error while exporting backup:\r\n" + e, "ShareX - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while exporting backup:\r\n" + e, Program.AppName + " - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -515,7 +515,7 @@ namespace ShareX
             catch (Exception e)
             {
                 DebugHelper.WriteException(e);
-                MessageBox.Show("Error while importing backup:\r\n" + e, "ShareX - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while importing backup:\r\n" + e, Program.AppName + " - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

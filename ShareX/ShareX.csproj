@@ -2,10 +2,11 @@
   <PropertyGroup>
     <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <ApplicationIcon>ShareX_Icon.ico</ApplicationIcon>
+    <AssemblyName>CtrlV</AssemblyName>
+    <ApplicationIcon>Resources\CtrlV_Icon.ico</ApplicationIcon>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Description>Screen capture, file sharing and productivity tool</Description>
+    <Description>CtrlV screen capture and productivity tool</Description>
     <SupportedOSPlatformVersion>10.0.22621.0</SupportedOSPlatformVersion>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
@@ -49,7 +50,7 @@
     <None Update="host-manifest-firefox.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="ShareX_File_Icon.ico">
+    <None Update="Resources\CtrlV_File_Icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

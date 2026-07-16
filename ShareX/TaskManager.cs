@@ -333,7 +333,7 @@ namespace ShareX
                                 if (info.TaskSettings.GeneralSettings.ShowToastNotificationAfterTaskCompleted && !string.IsNullOrEmpty(error.Text) &&
                                     (!info.TaskSettings.GeneralSettings.DisableNotificationsOnFullscreen || !CaptureHelpers.IsActiveWindowFullscreen()))
                                 {
-                                    TaskHelpers.ShowNotificationTip(error.Text, "ShareX - " + title, 5000);
+                                    TaskHelpers.ShowNotificationTip(error.Text, Program.AppName + " - " + title, 5000);
                                 }
                             }
                         }

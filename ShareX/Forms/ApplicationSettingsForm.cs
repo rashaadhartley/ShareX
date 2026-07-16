@@ -558,7 +558,7 @@ namespace ShareX
 
         private void BtnThemeReset_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Resources.WouldYouLikeToResetThemes, "ShareX - " + Resources.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show(Resources.WouldYouLikeToResetThemes, Program.AppName + " - " + Resources.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 Program.Settings.Themes = ShareXTheme.GetDefaultThemes();
                 Program.Settings.SelectedTheme = 0;
@@ -752,8 +752,8 @@ namespace ShareX
                 {
                     sfd.DefaultExt = "sxb";
                     string sanitizedMachineName = FileHelpers.SanitizeFileName(Environment.MachineName.ToLowerInvariant());
-                    sfd.FileName = $"ShareX-{Helpers.GetApplicationVersion()}-{sanitizedMachineName}-backup.sxb";
-                    sfd.Filter = "ShareX backup (*.sxb)|*.sxb|All files (*.*)|*.*";
+                    sfd.FileName = $"CtrlV-{Helpers.GetApplicationVersion()}-{sanitizedMachineName}-backup.sxb";
+                    sfd.Filter = "CtrlV backup (*.sxb)|*.sxb|All files (*.*)|*.*";
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
@@ -789,7 +789,7 @@ namespace ShareX
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "ShareX backup (*.sxb)|*.sxb|All files (*.*)|*.*";
+                ofd.Filter = "CtrlV backup (*.sxb)|*.sxb|All files (*.*)|*.*";
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
@@ -828,7 +828,7 @@ namespace ShareX
 
         private async void btnResetSettings_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Resources.ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings, "ShareX - " + Resources.Confirmation,
+            if (MessageBox.Show(Resources.ApplicationSettingsForm_btnResetSettings_Click_WouldYouLikeToResetShareXSettings, Program.AppName + " - " + Resources.Confirmation,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 SettingManager.ResetSettings();

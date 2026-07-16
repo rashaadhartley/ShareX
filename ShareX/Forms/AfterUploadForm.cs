@@ -69,7 +69,7 @@ namespace ShareX
                 }
             }
 
-            Text = "ShareX - " + (isFileExist ? info.FilePath : info.FileName);
+            Text = Program.AppName + " - " + (isFileExist ? info.FilePath : info.FileName);
 
             lvClipboardFormats.Groups.Add(lvgForums);
             lvClipboardFormats.Groups.Add(lvgHtml);

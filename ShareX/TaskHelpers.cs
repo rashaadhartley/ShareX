@@ -1394,7 +1394,7 @@ namespace ShareX
             }
             else
             {
-                MessageBox.Show("File does not exist:" + Environment.NewLine + filePath, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("File does not exist:" + Environment.NewLine + filePath, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2297,7 +2297,7 @@ namespace ShareX
             {
                 // TODO: Translate
                 MessageBox.Show("ExifTool does not exist at the following path:" + "\r\n" + exifToolPath,
-                    "ShareX - " + "ExifTool is missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Program.AppName + " - " + "ExifTool is missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return false;
             }
@@ -2589,7 +2589,7 @@ namespace ShareX
                         if (cui.DestinationType == CustomUploaderDestinationType.None)
                         {
                             DialogResult result = MessageBox.Show($"Would you like to add \"{cui}\" custom uploader?",
-                                "ShareX - Custom uploader confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                Program.AppName + " - Custom uploader confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
                             if (result == DialogResult.No)
                             {
@@ -2608,7 +2608,7 @@ namespace ShareX
                             string destinationsText = string.Join("/", destinations);
 
                             DialogResult result = MessageBox.Show($"Would you like to set \"{cui}\" as the active custom uploader for {destinationsText}?",
-                                "ShareX - Custom uploader confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                                Program.AppName + " - Custom uploader confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
                             if (result == DialogResult.Yes)
                             {
@@ -2699,7 +2699,7 @@ namespace ShareX
 
                 if (!Program.DefaultTaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.AddImageEffects) &&
                     MessageBox.Show(Resources.WouldYouLikeToEnableImageEffects,
-                    "ShareX", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    Program.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Program.DefaultTaskSettings.AfterCaptureJob = Program.DefaultTaskSettings.AfterCaptureJob.Add(AfterCaptureTasks.AddImageEffects);
                     Program.MainForm.UpdateCheckStates();
@@ -2814,7 +2814,7 @@ namespace ShareX
 
         public static async Task DownloadDevBuild()
         {
-            GitHubUpdateChecker updateChecker = new GitHubUpdateChecker("ShareX", "DevBuilds")
+            GitHubUpdateChecker updateChecker = new GitHubUpdateChecker("rashaadhartley", "ShareX")
             {
                 IsDev = true,
                 IsPortable = Program.Portable
@@ -2917,7 +2917,7 @@ namespace ShareX
             return !string.IsNullOrEmpty(content) && Encoding.UTF8.GetByteCount(content) <= 2952;
         }
 
-        public static void ShowNotificationTip(string text, string title = "ShareX", int duration = -1)
+        public static void ShowNotificationTip(string text, string title = "CtrlV", int duration = -1)
         {
             if (duration < 0)
             {

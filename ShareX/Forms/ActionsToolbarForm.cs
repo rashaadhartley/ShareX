@@ -77,7 +77,7 @@ namespace ShareX
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
-            Text = "ShareX - Actions toolbar";
+            Text = Program.AppName + " - Actions toolbar";
             TopMost = Program.Settings.ActionsToolbarStayTopMost;
 
             Shown += ActionsToolbarForm_Shown;
@@ -296,7 +296,7 @@ namespace ShareX
             ToolStripLabel tslTitle = new ToolStripLabel()
             {
                 Margin = new Padding(4, 0, 3, 0),
-                Text = "ShareX",
+                Text = Program.AppName,
                 ToolTipText = Resources.ActionsToolbar_Tip
             };
 
