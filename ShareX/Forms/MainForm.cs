@@ -47,6 +47,7 @@ namespace ShareX
         private UploadInfoManager uim;
         private ToolStripDropDownItem tsmiImageFileUploaders, tsmiTrayImageFileUploaders, tsmiTextFileUploaders, tsmiTrayTextFileUploaders;
         private ImageFilesCache actionsMenuIconCache = new ImageFilesCache();
+        private CtrlVLauncherPanel ctrlvLauncher;
 
         public MainForm()
         {
@@ -82,6 +83,7 @@ namespace ShareX
             Text = Program.Title;
 
             UpdateTheme();
+            InitializeCtrlVLauncher();
 
             this.CloseOnEscape();
             cmsTray.IgnoreSeparatorClick();
@@ -254,9 +256,19 @@ namespace ShareX
                 isPositionChanged = true;
             }
 
-            tsMain.Width = tsMain.PreferredSize.Width;
-            int height = Math.Max(Size.Height + tsMain.PreferredSize.Height - tsMain.Height, MinimumSize.Height);
-            MinimumSize = new Size(MinimumSize.Width, height);
+            int height;
+
+            if (ctrlvLauncher != null && ctrlvLauncher.Visible)
+            {
+                MinimumSize = new Size(680, 470);
+                height = 500;
+            }
+            else
+            {
+                tsMain.Width = tsMain.PreferredSize.Width;
+                height = Math.Max(Size.Height + tsMain.PreferredSize.Height - tsMain.Height, MinimumSize.Height);
+                MinimumSize = new Size(MinimumSize.Width, height);
+            }
 
             if (Program.Settings.RememberMainFormSize && !Program.Settings.MainFormSize.IsEmpty)
             {
@@ -301,6 +313,45 @@ namespace ShareX
             await InitHotkeys();
 
             IsReady = true;
+        }
+
+        private void InitializeCtrlVLauncher()
+        {
+            pToolbars.Visible = false;
+            pMain.Visible = false;
+
+            ctrlvLauncher = new CtrlVLauncherPanel(
+                () => RunCtrlVCapture(AfterCaptureTasks.CopyImageToClipboard, true),
+                () => TaskHelpers.OpenImageEditor(),
+                () => tsbApplicationSettings.PerformClick(),
+                ShowAdvancedInterface);
+
+            Controls.Add(ctrlvLauncher);
+            ctrlvLauncher.BringToFront();
+            MinimumSize = new Size(680, 470);
+            Size = new Size(760, 520);
+            StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private async void RunCtrlVCapture(AfterCaptureTasks afterCaptureTasks, bool showPreview)
+        {
+            TaskSettings taskSettings = TaskSettings.GetDefaultTaskSettings();
+            taskSettings.UseDefaultAfterCaptureJob = false;
+            taskSettings.AfterCaptureJob = afterCaptureTasks;
+            taskSettings.ShowCtrlVCapturePreview = showPreview;
+            taskSettings.UseDefaultAfterUploadJob = false;
+            taskSettings.AfterUploadJob = AfterUploadTasks.None;
+            await TaskHelpers.ExecuteJob(taskSettings, HotkeyType.RectangleRegion);
+        }
+
+        private void ShowAdvancedInterface()
+        {
+            ctrlvLauncher.Visible = false;
+            pToolbars.Visible = true;
+            pMain.Visible = true;
+            MinimumSize = new Size(879, 531);
+            Size = new Size(Math.Max(879, Width), Math.Max(531, Height));
+            pMain.BringToFront();
         }
 
         protected override void WndProc(ref Message m)
@@ -359,6 +410,8 @@ namespace ShareX
         {
             await Task.Run(() => SettingManager.WaitHotkeysConfig());
 
+            MigrateLegacyDefaultHotkeys();
+
             if (Program.HotkeyManager == null)
             {
                 Program.HotkeyManager = new HotkeyManager(this);
@@ -383,6 +436,41 @@ namespace ShareX
             if (pHotkeys.Visible)
             {
                 pHotkeys.Focus();
+            }
+        }
+
+        private static void MigrateLegacyDefaultHotkeys()
+        {
+            List<HotkeySettings> hotkeys = Program.HotkeysConfig?.Hotkeys;
+
+            if (hotkeys == null)
+            {
+                return;
+            }
+
+            (HotkeyType Job, Keys Hotkey)[] legacyDefaults =
+            {
+                (HotkeyType.RectangleRegion, Keys.Control | Keys.PrintScreen),
+                (HotkeyType.PrintScreen, Keys.PrintScreen),
+                (HotkeyType.ActiveWindow, Keys.Alt | Keys.PrintScreen),
+                (HotkeyType.ScreenRecorder, Keys.Shift | Keys.PrintScreen),
+                (HotkeyType.ScreenRecorderGIF, Keys.Control | Keys.Shift | Keys.PrintScreen)
+            };
+
+            bool isUntouchedLegacySet = hotkeys.Count == 5 && legacyDefaults.All(expected => hotkeys.Any(item =>
+                item.TaskSettings?.Job == expected.Job && item.HotkeyInfo?.Hotkey == expected.Hotkey));
+
+            bool isTwoShortcutCtrlVSet = hotkeys.Count == 2 &&
+                hotkeys.Any(item => item.TaskSettings?.Job == HotkeyType.RectangleRegion &&
+                    item.HotkeyInfo?.Hotkey == (Keys.Control | Keys.PrintScreen)) &&
+                hotkeys.Any(item => item.TaskSettings?.Job == HotkeyType.RectangleRegion &&
+                    item.HotkeyInfo?.Hotkey == (Keys.Control | Keys.Shift | Keys.PrintScreen));
+
+            if (isUntouchedLegacySet || isTwoShortcutCtrlVSet)
+            {
+                hotkeys.Clear();
+                hotkeys.AddRange(HotkeyManager.GetDefaultHotkeyList());
+                DebugHelper.WriteLine("Migrated default hotkeys to the single CtrlV capture shortcut.");
             }
         }
 

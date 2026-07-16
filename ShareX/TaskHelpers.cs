@@ -1343,21 +1343,60 @@ namespace ShareX
 
         private static void ShowImageEditorSelector(TaskSettings taskSettings)
         {
-            if (taskSettings.ToolsSettingsReference.ShowImageEditorSelector)
+            TaskSettingsTools toolsSettings = taskSettings.ToolsSettingsReference;
+            toolsSettings.UseLegacyImageEditor = false;
+            toolsSettings.ShowImageEditorSelector = false;
+
+            ImageEditorOptions options = toolsSettings.ImageEditorOptions;
+            options.Theme = "Dark";
+            options.UseSystemTheme = false;
+            options.AccentColorHex = "#8B5CF6";
+            options.UseSystemAccentColor = false;
+            options.RememberWindowState = false;
+            options.IsWindowMaximized = false;
+            options.ZoomToFitOnOpen = true;
+            options.ToolbarItems = CreateCtrlVToolbarItems();
+        }
+
+        private static List<ImageEditorToolbarItemOptions> CreateCtrlVToolbarItems()
+        {
+            string[] visibleItems =
             {
-                using (ImageEditorSelectorForm selectorForm = new ImageEditorSelectorForm())
+                "File",
+                "Select",
+                "Rectangle",
+                "Line",
+                "Arrow",
+                "Freehand",
+                "Text",
+                "Step",
+                "Highlight",
+                "Blur",
+                "Pixelate",
+                "Crop"
+            };
+
+            return visibleItems.Select(id => new ImageEditorToolbarItemOptions
+            {
+                Id = id,
+                BeginGroup = id is "Select" or "Highlight" or "Crop",
+                IsVisible = true,
+                Hotkey = id switch
                 {
-                    if (selectorForm.ShowDialog() == DialogResult.OK)
-                    {
-                        taskSettings.ToolsSettingsReference.UseLegacyImageEditor = selectorForm.UseLegacyImageEditor;
-                        taskSettings.ToolsSettingsReference.ShowImageEditorSelector = false;
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    "Select" => "V",
+                    "Rectangle" => "R",
+                    "Line" => "L",
+                    "Arrow" => "A",
+                    "Freehand" => "F",
+                    "Text" => "T",
+                    "Step" => "N",
+                    "Highlight" => "H",
+                    "Blur" => "B",
+                    "Pixelate" => "P",
+                    "Crop" => "C",
+                    _ => ""
                 }
-            }
+            }).ToList();
         }
 
         public static void OpenImageEditor(TaskSettings taskSettings = null)

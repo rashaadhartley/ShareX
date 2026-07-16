@@ -611,6 +611,11 @@ namespace ShareX
             {
                 ClipboardHelpers.CopyImage(Image, Info.FileName);
                 DebugHelper.WriteLine("Image copied to clipboard.");
+
+                if (Info.TaskSettings.ShowCtrlVCapturePreview)
+                {
+                    CtrlVCapturePreviewForm.ShowPreview(Image, Info.TaskSettings);
+                }
             }
 
             if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.PinToScreen))

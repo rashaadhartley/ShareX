@@ -404,6 +404,10 @@ public class EditorZoomController
         // logical-pixel to the Zoom unit (image pixels per physical screen pixel).
         double dpiScale = vm.DpiScale;
         double fitZoom = Math.Min(availableWidth / contentWidth, availableHeight / contentHeight) * dpiScale;
+        // Fit should make large captures visible without blowing small captures up.
+        // Keeping small images at their natural size makes the compact CtrlV editor
+        // feel calmer and avoids pixelated 150%+ previews.
+        fitZoom = Math.Min(fitZoom, dpiScale);
         fitZoom = Math.Clamp(fitZoom, MinZoom, MaxZoom);
 
         _lastZoom = vm.Zoom;
