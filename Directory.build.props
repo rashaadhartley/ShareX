@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
-    <Company>CtrlV Project</Company>
-    <Product>CtrlV</Product>
-    <Copyright>Copyright (c) 2007-2026 ShareX Team and CtrlV contributors</Copyright>
+    <Company>CapX Project</Company>
+    <Product>CapX</Product>
+    <Copyright>Copyright (c) 2007-2026 ShareX Team and CapX contributors</Copyright>
     <Version>21.0.0</Version>
     <EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

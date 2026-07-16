@@ -1355,10 +1355,10 @@ namespace ShareX
             options.RememberWindowState = false;
             options.IsWindowMaximized = false;
             options.ZoomToFitOnOpen = true;
-            options.ToolbarItems = CreateCtrlVToolbarItems();
+            options.ToolbarItems = CreateCapXToolbarItems();
         }
 
-        private static List<ImageEditorToolbarItemOptions> CreateCtrlVToolbarItems()
+        private static List<ImageEditorToolbarItemOptions> CreateCapXToolbarItems()
         {
             string[] visibleItems =
             {
@@ -2956,7 +2956,7 @@ namespace ShareX
             return !string.IsNullOrEmpty(content) && Encoding.UTF8.GetByteCount(content) <= 2952;
         }
 
-        public static void ShowNotificationTip(string text, string title = "CtrlV", int duration = -1)
+        public static void ShowNotificationTip(string text, string title = "CapX", int duration = -1)
         {
             if (duration < 0)
             {

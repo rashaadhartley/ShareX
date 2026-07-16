@@ -266,7 +266,7 @@ namespace ShareX
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Resources.HotkeySettingsForm_Reset_all_hotkeys_to_defaults_Confirmation, "ShareX", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(Resources.HotkeySettingsForm_Reset_all_hotkeys_to_defaults_Confirmation, Program.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 manager.ResetHotkeys();
                 AddControls();

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace ShareX
 {
-    internal sealed class CtrlVCapturePreviewForm : Form
+    internal sealed class CapXCapturePreviewForm : Form
     {
         private static readonly Color CanvasColor = Color.FromArgb(13, 16, 24);
         private static readonly Color SurfaceColor = Color.FromArgb(22, 27, 39);
@@ -33,7 +33,7 @@ namespace ShareX
             }
         }
 
-        private CtrlVCapturePreviewForm(Bitmap image, TaskSettings settings)
+        private CapXCapturePreviewForm(Bitmap image, TaskSettings settings)
         {
             capturedImage = image;
             taskSettings = settings;
@@ -69,11 +69,11 @@ namespace ShareX
 
             Bitmap imageCopy = new Bitmap(image);
             TaskSettings settingsCopy = taskSettings.Copy();
-            settingsCopy.ShowCtrlVCapturePreview = false;
+            settingsCopy.ShowCapXCapturePreview = false;
 
             Program.MainForm.BeginInvoke(new Action(() =>
             {
-                CtrlVCapturePreviewForm preview = new CtrlVCapturePreviewForm(imageCopy, settingsCopy);
+                CapXCapturePreviewForm preview = new CapXCapturePreviewForm(imageCopy, settingsCopy);
                 preview.Show();
             }));
         }
@@ -194,7 +194,7 @@ namespace ShareX
         {
             Bitmap image = capturedImage.CloneSafe();
             TaskSettings editSettings = taskSettings.Copy();
-            editSettings.ShowCtrlVCapturePreview = false;
+            editSettings.ShowCapXCapturePreview = false;
             editSettings.UseDefaultAfterCaptureJob = false;
             editSettings.AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard;
             Close();
@@ -206,7 +206,7 @@ namespace ShareX
             using Bitmap image = capturedImage.CloneSafe();
             string folder = TaskHelpers.GetScreenshotsFolder(taskSettings);
             Directory.CreateDirectory(folder);
-            string fileName = $"CtrlV_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
+            string fileName = $"CapX_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
             ImageHelpers.SaveImageFileDialog(image, Path.Combine(folder, fileName));
             Close();
         }

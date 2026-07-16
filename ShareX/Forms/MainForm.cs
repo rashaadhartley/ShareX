@@ -47,7 +47,7 @@ namespace ShareX
         private UploadInfoManager uim;
         private ToolStripDropDownItem tsmiImageFileUploaders, tsmiTrayImageFileUploaders, tsmiTextFileUploaders, tsmiTrayTextFileUploaders;
         private ImageFilesCache actionsMenuIconCache = new ImageFilesCache();
-        private CtrlVLauncherPanel ctrlvLauncher;
+        private CapXLauncherPanel capXLauncher;
 
         public MainForm()
         {
@@ -83,7 +83,7 @@ namespace ShareX
             Text = Program.Title;
 
             UpdateTheme();
-            InitializeCtrlVLauncher();
+            InitializeCapXLauncher();
 
             this.CloseOnEscape();
             cmsTray.IgnoreSeparatorClick();
@@ -258,7 +258,7 @@ namespace ShareX
 
             int height;
 
-            if (ctrlvLauncher != null && ctrlvLauncher.Visible)
+            if (capXLauncher != null && capXLauncher.Visible)
             {
                 MinimumSize = new Size(680, 470);
                 height = 500;
@@ -315,30 +315,30 @@ namespace ShareX
             IsReady = true;
         }
 
-        private void InitializeCtrlVLauncher()
+        private void InitializeCapXLauncher()
         {
             pToolbars.Visible = false;
             pMain.Visible = false;
 
-            ctrlvLauncher = new CtrlVLauncherPanel(
-                () => RunCtrlVCapture(AfterCaptureTasks.CopyImageToClipboard, true),
+            capXLauncher = new CapXLauncherPanel(
+                () => RunCapXCapture(AfterCaptureTasks.CopyImageToClipboard, true),
                 () => TaskHelpers.OpenImageEditor(),
                 () => tsbApplicationSettings.PerformClick(),
                 ShowAdvancedInterface);
 
-            Controls.Add(ctrlvLauncher);
-            ctrlvLauncher.BringToFront();
+            Controls.Add(capXLauncher);
+            capXLauncher.BringToFront();
             MinimumSize = new Size(680, 470);
             Size = new Size(760, 520);
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private async void RunCtrlVCapture(AfterCaptureTasks afterCaptureTasks, bool showPreview)
+        private async void RunCapXCapture(AfterCaptureTasks afterCaptureTasks, bool showPreview)
         {
             TaskSettings taskSettings = TaskSettings.GetDefaultTaskSettings();
             taskSettings.UseDefaultAfterCaptureJob = false;
             taskSettings.AfterCaptureJob = afterCaptureTasks;
-            taskSettings.ShowCtrlVCapturePreview = showPreview;
+            taskSettings.ShowCapXCapturePreview = showPreview;
             taskSettings.UseDefaultAfterUploadJob = false;
             taskSettings.AfterUploadJob = AfterUploadTasks.None;
             await TaskHelpers.ExecuteJob(taskSettings, HotkeyType.RectangleRegion);
@@ -346,7 +346,7 @@ namespace ShareX
 
         private void ShowAdvancedInterface()
         {
-            ctrlvLauncher.Visible = false;
+            capXLauncher.Visible = false;
             pToolbars.Visible = true;
             pMain.Visible = true;
             MinimumSize = new Size(879, 531);
@@ -460,17 +460,17 @@ namespace ShareX
             bool isUntouchedLegacySet = hotkeys.Count == 5 && legacyDefaults.All(expected => hotkeys.Any(item =>
                 item.TaskSettings?.Job == expected.Job && item.HotkeyInfo?.Hotkey == expected.Hotkey));
 
-            bool isTwoShortcutCtrlVSet = hotkeys.Count == 2 &&
+            bool isTwoShortcutCapXSet = hotkeys.Count == 2 &&
                 hotkeys.Any(item => item.TaskSettings?.Job == HotkeyType.RectangleRegion &&
                     item.HotkeyInfo?.Hotkey == (Keys.Control | Keys.PrintScreen)) &&
                 hotkeys.Any(item => item.TaskSettings?.Job == HotkeyType.RectangleRegion &&
                     item.HotkeyInfo?.Hotkey == (Keys.Control | Keys.Shift | Keys.PrintScreen));
 
-            if (isUntouchedLegacySet || isTwoShortcutCtrlVSet)
+            if (isUntouchedLegacySet || isTwoShortcutCapXSet)
             {
                 hotkeys.Clear();
                 hotkeys.AddRange(HotkeyManager.GetDefaultHotkeyList());
-                DebugHelper.WriteLine("Migrated default hotkeys to the single CtrlV capture shortcut.");
+                DebugHelper.WriteLine("Migrated default hotkeys to the single CapX capture shortcut.");
             }
         }
 

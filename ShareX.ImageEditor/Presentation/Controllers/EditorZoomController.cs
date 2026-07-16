@@ -405,7 +405,7 @@ public class EditorZoomController
         double dpiScale = vm.DpiScale;
         double fitZoom = Math.Min(availableWidth / contentWidth, availableHeight / contentHeight) * dpiScale;
         // Fit should make large captures visible without blowing small captures up.
-        // Keeping small images at their natural size makes the compact CtrlV editor
+        // Keeping small images at their natural size makes the compact CapX editor
         // feel calmer and avoids pixelated 150%+ previews.
         fitZoom = Math.Min(fitZoom, dpiScale);
         fitZoom = Math.Clamp(fitZoom, MinZoom, MaxZoom);

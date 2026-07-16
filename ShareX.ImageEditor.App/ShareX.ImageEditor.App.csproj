@@ -8,7 +8,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x64;ARM64</Platforms>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <ApplicationIcon>Assets\ShareX_ImageEditor_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\CapX_ImageEditor_Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

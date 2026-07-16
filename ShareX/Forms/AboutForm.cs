@@ -44,7 +44,7 @@ namespace ShareX
             pLogo.BackColor = Color.FromArgb(35, 35, 35);
             cLogo.BackColor = Color.FromArgb(35, 35, 35);
 
-            rtbInfo.AppendLine("CtrlV is a customized build of ShareX.", FontStyle.Bold, 13);
+            rtbInfo.AppendLine("CapX is a focused screen capture and image editing tool built from ShareX.", FontStyle.Bold, 13);
             rtbInfo.AppendLine("Original project: https://github.com/ShareX/ShareX", FontStyle.Regular);
 
 #if STEAM
@@ -125,7 +125,7 @@ ZXing.Net: https://github.com/micjahn/ZXing.Net
 ExifTool: https://exiftool.org
 ", FontStyle.Regular);
 
-            rtbInfo.AppendText("Copyright (c) 2007-2026 ShareX Team and CtrlV contributors", FontStyle.Bold, 13);
+            rtbInfo.AppendText("Copyright (c) 2007-2026 ShareX Team and CapX contributors", FontStyle.Bold, 13);
 
             easterEgg = new EasterEggAboutAnimation(cLogo, this);
         }
