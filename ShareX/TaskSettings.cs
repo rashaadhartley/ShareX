@@ -55,7 +55,8 @@ namespace ShareX
         public HotkeyType Job = HotkeyType.None;
 
         public bool UseDefaultAfterCaptureJob = true;
-        public AfterCaptureTasks AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard | AfterCaptureTasks.SaveImageToFile;
+        public AfterCaptureTasks AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard;
+        public bool ShowCtrlVCapturePreview = true;
 
         public bool UseDefaultAfterUploadJob = true;
         public AfterUploadTasks AfterUploadJob = AfterUploadTasks.CopyURLToClipboard;
@@ -469,7 +470,7 @@ namespace ShareX
         public ImageEditorOptions ImageEditorOptions = new ImageEditorOptions();
         public BackgroundRemoverOptions BackgroundRemoverOptions = new BackgroundRemoverOptions();
         public bool UseLegacyImageEditor = false;
-        public bool ShowImageEditorSelector = true;
+        public bool ShowImageEditorSelector = false;
     }
 
     public class TaskSettingsAdvanced

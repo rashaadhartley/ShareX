@@ -53,17 +53,17 @@ namespace ShareX.ImageEditor.Integration
         // Editor
         public EditorTool LastUsedAnnotationTool { get; set; } = EditorTool.Rectangle;
         public string Theme { get; set; } = "Dark";
-        public bool UseSystemTheme { get; set; } = true;
-        public string AccentColorHex { get; set; } = "#3E83F2";
+        public bool UseSystemTheme { get; set; } = false;
+        public string AccentColorHex { get; set; } = "#8B5CF6";
         [JsonIgnore]
         public Color AccentColor { get => HexToColor(AccentColorHex); set => AccentColorHex = ColorToHex(value); }
-        public bool UseSystemAccentColor { get; set; } = true;
-        public bool RememberWindowState { get; set; } = true;
-        public bool IsWindowMaximized { get; set; } = true;
-        public double WindowWidth { get; set; } = 1280;
-        public double WindowHeight { get; set; } = 720;
+        public bool UseSystemAccentColor { get; set; } = false;
+        public bool RememberWindowState { get; set; } = false;
+        public bool IsWindowMaximized { get; set; } = false;
+        public double WindowWidth { get; set; } = 1000;
+        public double WindowHeight { get; set; } = 700;
         public bool ShowExitConfirmation { get; set; } = true;
-        public bool ZoomToFitOnOpen { get; set; } = false;
+        public bool ZoomToFitOnOpen { get; set; } = true;
         public bool QuickCrop { get; set; } = true;
         public bool AutoCloseEditorOnTask { get; set; } = false;
         public bool AutoCopyImageToClipboard { get; set; } = false;

@@ -12,27 +12,27 @@
 
         <!-- ShareX Dark theme -->
         <ResourceDictionary x:Key="{x:Static helpers:ThemeManager.ShareXDark}">
-            <Color x:Key="ShareX.Color.Accent.Start">#3E83F2</Color>
-            <Color x:Key="ShareX.Color.Accent.End">#3975D5</Color>
-            <Color x:Key="ShareX.Color.Accent.Foreground">#D8DADB</Color>
+            <Color x:Key="ShareX.Color.Accent.Start">#8B5CF6</Color>
+            <Color x:Key="ShareX.Color.Accent.End">#6D5CE7</Color>
+            <Color x:Key="ShareX.Color.Accent.Foreground">#F8FAFC</Color>
 
-            <Color x:Key="ShareX.Color.Text">#D8DADB</Color>
-            <Color x:Key="ShareX.Color.Text.Secondary">#D8DADB</Color>
+            <Color x:Key="ShareX.Color.Text">#F1F5F9</Color>
+            <Color x:Key="ShareX.Color.Text.Secondary">#8B97AE</Color>
 
-            <Color x:Key="ShareX.Color.Background.Main">#272727</Color>
-            <Color x:Key="ShareX.Color.Background.Panel">#242424</Color>
-            <Color x:Key="ShareX.Color.Background.Popup">#2E2E2E</Color>
-            <Color x:Key="ShareX.Color.Background.Toolbar">#222222</Color>
+            <Color x:Key="ShareX.Color.Background.Main">#0A0C12</Color>
+            <Color x:Key="ShareX.Color.Background.Panel">#111621</Color>
+            <Color x:Key="ShareX.Color.Background.Popup">#171C29</Color>
+            <Color x:Key="ShareX.Color.Background.Toolbar">#141823</Color>
 
-            <Color x:Key="ShareX.Color.Border">#1F1F1F</Color>
-            <Color x:Key="ShareX.Color.Control.Background">#2E2E2E</Color>
-            <Color x:Key="ShareX.Color.Control.Background.Hover">#3A3A3A</Color>
-            <Color x:Key="ShareX.Color.Control.Border">#1F1F1F</Color>
-            <Color x:Key="ShareX.Color.Separator">#333333</Color>
-            <Color x:Key="ShareX.Color.TaskMode.Cancel.Background">#DC2626</Color>
+            <Color x:Key="ShareX.Color.Border">#30384C</Color>
+            <Color x:Key="ShareX.Color.Control.Background">#1B2130</Color>
+            <Color x:Key="ShareX.Color.Control.Background.Hover">#252D40</Color>
+            <Color x:Key="ShareX.Color.Control.Border">#30384C</Color>
+            <Color x:Key="ShareX.Color.Separator">#30384C</Color>
+            <Color x:Key="ShareX.Color.TaskMode.Cancel.Background">#B91C3C</Color>
             <Color x:Key="ShareX.Color.TaskMode.Cancel.Border">#EF4444</Color>
-            <Color x:Key="ShareX.Color.TaskMode.Continue.Background">#10B981</Color>
-            <Color x:Key="ShareX.Color.TaskMode.Continue.Border">#13DD9A</Color>
+            <Color x:Key="ShareX.Color.TaskMode.Continue.Background">#8B5CF6</Color>
+            <Color x:Key="ShareX.Color.TaskMode.Continue.Border">#A78BFA</Color>
             <Color x:Key="ShareX.Color.TaskMode.Foreground">#FFFFFF</Color>
 
             <LinearGradientBrush x:Key="ShareX.Brush.Accent" StartPoint="0%,0%" EndPoint="100%,100%">
@@ -54,7 +54,7 @@
             <SolidColorBrush x:Key="ShareX.Brush.Control.Background" Color="{StaticResource ShareX.Color.Control.Background}" />
             <SolidColorBrush x:Key="ShareX.Brush.Control.Background.Hover" Color="{StaticResource ShareX.Color.Control.Background.Hover}" />
             <SolidColorBrush x:Key="ShareX.Brush.Control.Border" Color="{StaticResource ShareX.Color.Control.Border}" />
-            <SolidColorBrush x:Key="ShareX.Brush.Control.Background.Disabled" Color="#383838" />
+            <SolidColorBrush x:Key="ShareX.Brush.Control.Background.Disabled" Color="#22293A" />
             <SolidColorBrush x:Key="ShareX.Brush.Separator" Color="{StaticResource ShareX.Color.Separator}" />
             <SolidColorBrush x:Key="ShareX.Brush.TaskMode.Cancel.Background" Color="{StaticResource ShareX.Color.TaskMode.Cancel.Background}" />
             <SolidColorBrush x:Key="ShareX.Brush.TaskMode.Cancel.Border" Color="{StaticResource ShareX.Color.TaskMode.Cancel.Border}" />
@@ -67,12 +67,12 @@
             <DrawingBrush x:Key="ShareX.Brush.Checkered" TileMode="Tile" SourceRect="0,0,30,30" DestinationRect="0,0,30,30">
                 <DrawingBrush.Drawing>
                     <DrawingGroup>
-                        <GeometryDrawing Brush="#272727">
+                        <GeometryDrawing Brush="#0F131D">
                             <GeometryDrawing.Geometry>
                                 <RectangleGeometry Rect="0,0,30,30" />
                             </GeometryDrawing.Geometry>
                         </GeometryDrawing>
-                        <GeometryDrawing Brush="#2E2E2E">
+                        <GeometryDrawing Brush="#151A26">
                             <GeometryDrawing.Geometry>
                                 <GeometryGroup>
                                     <RectangleGeometry Rect="0,0,15,15" />
@@ -87,12 +87,12 @@
             <DrawingBrush x:Key="ShareX.Brush.Checkered.Small" TileMode="Tile" SourceRect="0,0,8,8" DestinationRect="0,0,8,8">
                 <DrawingBrush.Drawing>
                     <DrawingGroup>
-                        <GeometryDrawing Brush="#272727">
+                        <GeometryDrawing Brush="#0F131D">
                             <GeometryDrawing.Geometry>
                                 <RectangleGeometry Rect="0,0,8,8" />
                             </GeometryDrawing.Geometry>
                         </GeometryDrawing>
-                        <GeometryDrawing Brush="#2E2E2E">
+                        <GeometryDrawing Brush="#151A26">
                             <GeometryDrawing.Geometry>
                                 <GeometryGroup>
                                     <RectangleGeometry Rect="0,0,4,4" />

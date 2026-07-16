@@ -479,7 +479,7 @@
             </Border>
 
             <!-- Central Preview Canvas -->
-            <Grid Grid.Column="1" Margin="8">
+            <Grid Grid.Column="1" Margin="24,104,24,76">
                 <ScrollViewer Name="CanvasScrollViewer"
                               Background="Transparent"
                               HorizontalScrollBarVisibility="Auto"
@@ -628,22 +628,49 @@
         <Border Grid.Row="0"
             Classes="editor-toolbar-host top"
             Classes.hidden="{Binding AreToolbarsHidden}"
-            Margin="0,0,0,0"
+            Margin="0"
+            Padding="18,10,18,8"
+            Background="{DynamicResource ShareX.Brush.Background.Panel}"
+            BorderBrush="{DynamicResource ShareX.Brush.Border}"
+            BorderThickness="0,0,0,1"
             VerticalAlignment="Top"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Stretch"
             IsHitTestVisible="{Binding ShowToolbars}">
-            <controls:AnnotationToolbar x:Name="AnnotationToolbarControl"
-                                        DataContext="{Binding ToolbarAdapter}"
-                                        ShowEditingActions="False"
-                                        MaxWidth="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Grid ColumnDefinitions="120,*,120">
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="4,3,0,0" Spacing="0">
+                    <TextBlock Text="CTRLV"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               Foreground="#A78BFA"/>
+                    <TextBlock Text="IMAGE EDITOR"
+                               FontSize="8"
+                               FontWeight="SemiBold"
+                               Foreground="#38BDF8"/>
+                </StackPanel>
+
+                <controls:AnnotationToolbar Grid.Column="1"
+                                            x:Name="AnnotationToolbarControl"
+                                            DataContext="{Binding ToolbarAdapter}"
+                                            ShowEditingActions="False"
+                                            HorizontalAlignment="Center"
+                                            MaxWidth="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+
+                <TextBlock Grid.Column="2"
+                           Text="{Binding ImageDimensions}"
+                           FontSize="10"
+                           Foreground="{DynamicResource ShareX.Brush.Text.Secondary}"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           Margin="0,6,4,0"/>
+            </Grid>
         </Border>
 
         <!-- Row 0: Export Actions Toolbar (Bottom Centered, Floating) -->
         <Border Grid.Row="0"
             Classes="editor-toolbar-host bottom"
             Classes.hidden="{Binding AreToolbarsHidden}"
-            VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,0"
-                Padding="4" Background="{DynamicResource ShareX.Brush.Background.Toolbar}" BorderBrush="{DynamicResource ShareX.Brush.Border}" BorderThickness="1" CornerRadius="4,4,0,0"
+            VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="16,0,16,12"
+                Padding="6" Background="{DynamicResource ShareX.Brush.Background.Toolbar}" BorderBrush="{DynamicResource ShareX.Brush.Border}" BorderThickness="1" CornerRadius="12"
                 MaxWidth="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=UserControl}}"
             ClipToBounds="False"
             IsHitTestVisible="{Binding ShowToolbars}">
@@ -660,72 +687,57 @@
                 <Border Width="1" Height="38" Background="{DynamicResource ShareX.Brush.Separator}" Margin="4,0"
                         IsVisible="{Binding ShowBottomToolbar}"/>
 
-                <!-- Task Mode Buttons -->
-                <Grid Width="90" Height="40" Margin="4,0,10,0" ClipToBounds="False" VerticalAlignment="Bottom"
-                      IsVisible="{Binding ShowTaskButtons}">
-                    <!-- Cancel Button: Red Rectangle (Behind) -->
+                <!-- Focused task actions -->
+                <StackPanel Orientation="Horizontal" Spacing="6" Margin="4,0,8,0"
+                            IsVisible="{Binding ShowTaskButtons}">
+                    <Button Command="{Binding ContinueCommand}"
+                            Classes="task-mode-button success"
+                            Width="82" Height="40" CornerRadius="6"
+                            BorderThickness="1"
+                            ToolTip.Tip="{Binding ContinueButtonTooltip}" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
+                        <TextBlock Text="DONE" FontSize="10" FontWeight="Bold"/>
+                    </Button>
                     <Button Command="{Binding CancelCommand}"
                             Classes="task-mode-button danger"
                             BorderThickness="1"
-                            Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                            Width="55" Margin="0,0,0,0" Padding="27,0,10,0" CornerRadius="0,4,4,0"
-                            ToolTip.Tip="Cancel (Esc)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5"
-                            ZIndex="0">
-                        <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionCancel}"
-                                   FontFamily="{DynamicResource ShareX.FontFamily.Icon}"
-                                   FontSize="18" FontWeight="Normal"
-                                   VerticalAlignment="Center"/>
+                            Width="72" Height="40" CornerRadius="6"
+                            ToolTip.Tip="Cancel (Esc)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
+                        <TextBlock Text="CANCEL" FontSize="10" FontWeight="SemiBold"/>
                     </Button>
+                </StackPanel>
 
-                    <!-- Continue Button: Big Green Circle (Front) -->
-                    <Button Command="{Binding ContinueCommand}"
-                            Classes="task-mode-button success"
-                            Width="56" Height="56" CornerRadius="28"
-                            BorderThickness="1"
-                            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                            Margin="0,0,0,-8"
-                            ToolTip.Tip="{Binding ContinueButtonTooltip}" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5"
-                            ZIndex="20">
-                        <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionContinue}"
-                                   FontFamily="{DynamicResource ShareX.FontFamily.Icon}"
-                                   FontSize="22" FontWeight="Normal"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Margin="4,0,0,0"/>
-                    </Button>
-                </Grid>
-
-                <Button Command="{Binding CopyCommand}" Width="40" Padding="0"
+                <Button Command="{Binding CopyCommand}" Width="66" Height="40" Padding="8,0" CornerRadius="6"
                         IsVisible="{Binding ShowBottomToolbar}"
                         ToolTip.Tip="Copy image to clipboard (Ctrl+C)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
-                    <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionCopy}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
+                    <TextBlock Text="COPY" FontSize="10" FontWeight="SemiBold"/>
                 </Button>
 
-                <Button Command="{Binding SaveCommand}" Width="40" Padding="0"
+                <Button Command="{Binding SaveCommand}" Width="66" Height="40" Padding="8,0" CornerRadius="6"
                         IsVisible="{Binding ShowBottomToolbar}"
                         ToolTip.Tip="Save image (Ctrl+S)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
-                    <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionSave}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
+                    <TextBlock Text="SAVE" FontSize="10" FontWeight="SemiBold"/>
                 </Button>
 
                 <Button Command="{Binding SaveAsCommand}" Width="40" Padding="0"
-                        IsVisible="{Binding ShowBottomToolbar}"
+                        IsVisible="False"
                         ToolTip.Tip="Save image as... (Ctrl+Shift+S)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
                     <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionSaveAs}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
                 </Button>
 
                 <Button Command="{Binding PinToScreenCommand}" IsEnabled="{Binding HasPreviewImage}" Width="40" Padding="0"
-                        IsVisible="{Binding ShowBottomToolbar}"
+                        IsVisible="False"
                         ToolTip.Tip="Pin image to screen (Ctrl+P)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
                     <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionPinToScreen}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
                 </Button>
 
                 <Button Command="{Binding PrintCommand}" IsEnabled="{Binding HasPreviewImage}" Width="40" Padding="0"
-                        IsVisible="{Binding ShowBottomToolbar}"
+                        IsVisible="False"
                         ToolTip.Tip="Print image... (Ctrl+Shift+P)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
                     <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionPrint}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
                 </Button>
 
                 <Button Command="{Binding UploadCommand}" IsEnabled="{Binding HasPreviewImage}" Width="40" Padding="0"
-                        IsVisible="{Binding ShowBottomToolbar}"
+                        IsVisible="False"
                         ToolTip.Tip="Upload image (Ctrl+U)" ToolTip.Placement="Top" ToolTip.VerticalOffset="-5">
                     <TextBlock Text="{x:Static editorTheming:EditorIcons.ActionUpload}" FontSize="18" FontFamily="{DynamicResource ShareX.FontFamily.Icon}" FontWeight="Normal"/>
                 </Button>

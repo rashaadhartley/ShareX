@@ -18,11 +18,9 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical" Spacing="0">
-        <Border Padding="4"
-                Background="{DynamicResource ShareX.Brush.Background.Toolbar}"
-                BorderBrush="{DynamicResource ShareX.Brush.Border}"
-                BorderThickness="1"
-                CornerRadius="0,0,4,4"
+        <Border Padding="0"
+                Background="Transparent"
+                BorderThickness="0"
                 HorizontalAlignment="Center">
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Disabled">
@@ -163,12 +161,12 @@
             </ScrollViewer>
         </Border>
 
-        <Border Padding="4,0,4,4"
-                Margin="0,-1,0,0"
-                Background="{DynamicResource ShareX.Brush.Background.Toolbar}"
+        <Border Padding="6,3"
+                Margin="0,6,0,0"
+                Background="{DynamicResource ShareX.Brush.Background.Main}"
                 BorderBrush="{DynamicResource ShareX.Brush.Border}"
-                BorderThickness="1,0,1,1"
-                CornerRadius="0,0,4,4"
+                BorderThickness="1"
+                CornerRadius="8"
                 HorizontalAlignment="Center"
                 IsVisible="{Binding ShowToolOptionsSeparator}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto"

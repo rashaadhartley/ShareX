@@ -80,7 +80,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         private bool _zoomToFitOnNextImageLoad;
 
         [ObservableProperty]
-        private string _windowTitle = "ShareX - Image Editor";
+        private string _windowTitle = "CtrlV - Editor";
 
         [ObservableProperty]
         private bool _showFileMenu;
@@ -928,7 +928,7 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
 
         private static string BuildWindowTitle(double width, double height, string? fileName)
         {
-            var sb = new System.Text.StringBuilder("ShareX - Image Editor");
+            var sb = new System.Text.StringBuilder("CtrlV - Editor");
 
             if (width > 0 && height > 0)
             {
@@ -1256,8 +1256,11 @@ namespace ShareX.ImageEditor.Presentation.ViewModels
         private async Task Copy()
         {
             await RequestCopyToClipboardAsync();
-            ShowTaskActionNotification("Image copied to clipboard.", EditorIcons.ActionCopy);
-            CloseAfterTaskActionIfEnabled();
+            // Copy is the terminal action in CtrlV's fast workflow. Once the
+            // clipboard write has completed, close the editor so the user can
+            // paste directly into their destination without another step.
+            TaskResult = EditorTaskResult.Cancel;
+            CloseRequested?.Invoke(this, EventArgs.Empty);
         }
 
         [RelayCommand(CanExecute = nameof(CanSave))]

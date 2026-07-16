@@ -236,7 +236,9 @@ public sealed class ToolbarCustomizationItemViewModel : ViewModelBase
 
         foreach (ToolbarItemDefinition missingDefinition in ItemDefinitions.Where(definition => !usedToolIds.Contains(definition.Id)))
         {
-            items.Add(CreateItem(missingDefinition));
+            // A custom toolbar is an intentional allow-list. New or omitted tools
+            // remain available in customization without crowding the main editor.
+            items.Add(CreateItem(missingDefinition, isVisible: false));
         }
 
         return items.Count > 0 ? items : CreateDefaultItems();

@@ -26,6 +26,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Platform;
 using ShareX.ImageEditor.Integration;
 using ShareX.ImageEditor.Presentation.ViewModels;
 using SkiaSharp;
@@ -40,6 +41,7 @@ namespace ShareX.ImageEditor.Presentation.Views
         private readonly MainViewModel _viewModel;
         private string? _pendingFilePath;
         private bool _allowClose;
+        private PixelSize? _initialImageSize;
 
         public EditorWindow() : this(null)
         {
@@ -60,6 +62,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
             // Defer image loading until EditorView is loaded and subscribed
             this.Loaded += OnWindowLoaded;
+            this.Opened += OnWindowOpened;
 
             _viewModel.CloseRequested += (s, e) =>
             {
@@ -149,6 +152,37 @@ namespace ShareX.ImageEditor.Presentation.Views
             }
         }
 
+        private void OnWindowOpened(object? sender, EventArgs e)
+        {
+            ApplyImageAwareWindowSize();
+        }
+
+        private void ApplyImageAwareWindowSize()
+        {
+            WindowState = WindowState.Normal;
+
+            Screen? screen = Screens.ScreenFromWindow(this) ?? Screens.Primary;
+            double scaling = Math.Max(1, screen?.Scaling ?? 1);
+            double workingWidth = (screen?.WorkingArea.Width ?? 1280) / scaling;
+            double workingHeight = (screen?.WorkingArea.Height ?? 800) / scaling;
+            double maxWidth = Math.Max(MinWidth, workingWidth * 0.90);
+            double maxHeight = Math.Max(MinHeight, workingHeight * 0.90);
+
+            double desiredWidth = 1000;
+            double desiredHeight = 700;
+
+            if (_initialImageSize is PixelSize imageSize)
+            {
+                const double horizontalChrome = 104;
+                const double verticalChrome = 196;
+                desiredWidth = imageSize.Width + horizontalChrome;
+                desiredHeight = imageSize.Height + verticalChrome;
+            }
+
+            Width = Math.Clamp(desiredWidth, MinWidth, maxWidth);
+            Height = Math.Clamp(desiredHeight, MinHeight, maxHeight);
+        }
+
         /// <summary>
         /// Loads an image from the specified file path.
         /// If called before window is loaded, defers loading until EditorView is ready.
@@ -230,6 +264,12 @@ namespace ShareX.ImageEditor.Presentation.Views
         {
             if (bitmap == null) return;
 
+            _initialImageSize = new PixelSize(bitmap.Width, bitmap.Height);
+            if (IsLoaded)
+            {
+                ApplyImageAwareWindowSize();
+            }
+
             try
             {
                 _viewModel.UpdatePreview(bitmap);
@@ -244,8 +284,8 @@ namespace ShareX.ImageEditor.Presentation.Views
         private static string GetWindowTitle(string? dimensions)
         {
             return string.IsNullOrEmpty(dimensions)
-                ? "ShareX - Image Editor"
-                : $"ShareX - Image Editor - {dimensions}";
+                ? "CtrlV - Editor"
+                : $"CtrlV - Editor - {dimensions}";
         }
 
         private static string GetVersionString()

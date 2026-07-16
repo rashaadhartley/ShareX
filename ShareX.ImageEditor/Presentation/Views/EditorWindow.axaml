@@ -9,7 +9,8 @@
         x:DataType="vm:MainViewModel"
         Title="{Binding WindowTitle}"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        MinWidth="1040"
+        MinHeight="640">
 
     <views:EditorView Name="EditorViewControl"/>
 

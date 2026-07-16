@@ -219,13 +219,15 @@ namespace ShareX
 
         public static List<HotkeySettings> GetDefaultHotkeyList()
         {
+            HotkeySettings quickCapture = new HotkeySettings(HotkeyType.RectangleRegion, Keys.Control | Keys.PrintScreen);
+            quickCapture.TaskSettings.Description = "Quick Capture";
+            quickCapture.TaskSettings.UseDefaultAfterCaptureJob = false;
+            quickCapture.TaskSettings.AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard;
+            quickCapture.TaskSettings.ShowCtrlVCapturePreview = true;
+
             return new List<HotkeySettings>
             {
-                new HotkeySettings(HotkeyType.RectangleRegion, Keys.Control | Keys.PrintScreen),
-                new HotkeySettings(HotkeyType.PrintScreen, Keys.PrintScreen),
-                new HotkeySettings(HotkeyType.ActiveWindow, Keys.Alt | Keys.PrintScreen),
-                new HotkeySettings(HotkeyType.ScreenRecorder, Keys.Shift | Keys.PrintScreen),
-                new HotkeySettings(HotkeyType.ScreenRecorderGIF, Keys.Control | Keys.Shift | Keys.PrintScreen)
+                quickCapture
             };
         }
     }
