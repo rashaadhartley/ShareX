@@ -48,7 +48,7 @@ namespace ShareX
 {
     internal static class Program
     {
-        public const string AppName = "CtrlV";
+        public const string AppName = "CapX";
         public const string MutexName = "69C78196-3AE9-48D1-9B73-36B83B4E5ED1";
         public static readonly string PipeName = $"{Environment.MachineName}-{Environment.UserName}-{AppName}";
 
@@ -220,7 +220,7 @@ namespace ShareX
                     return null;
                 }
 
-                string fileName = string.Format("CtrlV-Log-{0:yyyy-MM}.txt", DateTime.Now);
+                string fileName = string.Format("CapX-Log-{0:yyyy-MM}.txt", DateTime.Now);
                 return Path.Combine(LogsFolder, fileName);
             }
         }

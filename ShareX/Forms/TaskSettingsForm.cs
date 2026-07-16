@@ -523,11 +523,11 @@ namespace ShareX
         {
             if (IsDefault)
             {
-                Text = "ShareX - " + Resources.TaskSettingsForm_UpdateWindowTitle_Task_settings;
+                Text = Program.AppName + " - " + Resources.TaskSettingsForm_UpdateWindowTitle_Task_settings;
             }
             else
             {
-                Text = "ShareX - " + string.Format(Resources.TaskSettingsForm_UpdateWindowTitle_Task_settings_for__0_, TaskSettings);
+                Text = Program.AppName + " - " + string.Format(Resources.TaskSettingsForm_UpdateWindowTitle_Task_settings_for__0_, TaskSettings);
             }
         }
 

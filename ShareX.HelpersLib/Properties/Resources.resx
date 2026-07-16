@@ -325,7 +325,7 @@
     <value>Recognize text (OCR)</value>
   </data>
   <data name="HotkeyType_ExitShareX" xml:space="preserve">
-    <value>Exit ShareX</value>
+    <value>Exit CapX</value>
   </data>
   <data name="UpdateMessageBox_UpdateMessageBox_Portable" xml:space="preserve">
     <value>A newer version of {0} is available.
@@ -712,7 +712,7 @@ Would you like to download and install it?</value>
     <value>Upload file</value>
   </data>
   <data name="ShareX_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CtrlV_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\CapX_Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ReplCodeMenuEntry_guid_Random_guid" xml:space="preserve">
     <value>Random GUID</value>
@@ -856,7 +856,7 @@ Would you like to download and install it?</value>
     <value>Value</value>
   </data>
   <data name="ShareX_Icon_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CtrlV_Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\CapX_Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HotkeyType_DisableHotkeys" xml:space="preserve">
     <value>Disable/Enable hotkeys</value>
@@ -877,7 +877,7 @@ Would you like to download and install it?</value>
     <value>File path</value>
   </data>
   <data name="ShareX_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CtrlV_Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\CapX_Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SupportedLanguage_Automatic" xml:space="preserve">
     <value>Automatic</value>
@@ -1204,7 +1204,7 @@ Would you like to download and install it?</value>
     <value>Pin to screen</value>
   </data>
   <data name="ShareXImageViewer" xml:space="preserve">
-    <value>ShareX - Image viewer</value>
+    <value>CapX - Image viewer</value>
   </data>
   <data name="HotkeyType_PinToScreen" xml:space="preserve">
     <value>Pin to screen</value>

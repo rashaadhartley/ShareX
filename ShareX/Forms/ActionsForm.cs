@@ -68,13 +68,13 @@ namespace ShareX
         {
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show(Resources.ActionsForm_btnOK_Click_Name_can_t_be_empty_, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.ActionsForm_btnOK_Click_Name_can_t_be_empty_, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrEmpty(txtPath.Text))
             {
-                MessageBox.Show(Resources.ActionsForm_btnOK_Click_File_path_can_t_be_empty_, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Resources.ActionsForm_btnOK_Click_File_path_can_t_be_empty_, Program.AppName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

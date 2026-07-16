@@ -284,8 +284,8 @@ namespace ShareX.ImageEditor.Presentation.Views
         private static string GetWindowTitle(string? dimensions)
         {
             return string.IsNullOrEmpty(dimensions)
-                ? "CtrlV - Editor"
-                : $"CtrlV - Editor - {dimensions}";
+                ? "CapX - Editor"
+                : $"CapX - Editor - {dimensions}";
         }
 
         private static string GetVersionString()

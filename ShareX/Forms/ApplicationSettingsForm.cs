@@ -752,8 +752,8 @@ namespace ShareX
                 {
                     sfd.DefaultExt = "sxb";
                     string sanitizedMachineName = FileHelpers.SanitizeFileName(Environment.MachineName.ToLowerInvariant());
-                    sfd.FileName = $"CtrlV-{Helpers.GetApplicationVersion()}-{sanitizedMachineName}-backup.sxb";
-                    sfd.Filter = "CtrlV backup (*.sxb)|*.sxb|All files (*.*)|*.*";
+                    sfd.FileName = $"CapX-{Helpers.GetApplicationVersion()}-{sanitizedMachineName}-backup.sxb";
+                    sfd.Filter = "CapX backup (*.sxb)|*.sxb|All files (*.*)|*.*";
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
@@ -789,7 +789,7 @@ namespace ShareX
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                ofd.Filter = "CtrlV backup (*.sxb)|*.sxb|All files (*.*)|*.*";
+                ofd.Filter = "CapX backup (*.sxb)|*.sxb|All files (*.*)|*.*";
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {

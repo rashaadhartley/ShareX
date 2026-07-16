@@ -121,7 +121,7 @@ namespace ShareX
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Resources.QuickTaskMenuEditorForm_Reset_all_quick_tasks_to_defaults_Confirmation, "ShareX", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(Resources.QuickTaskMenuEditorForm_Reset_all_quick_tasks_to_defaults_Confirmation, Program.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Program.Settings.QuickTaskPresets = QuickTaskInfo.DefaultPresets;
                 UpdateItems();

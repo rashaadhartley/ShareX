@@ -638,7 +638,7 @@
             IsHitTestVisible="{Binding ShowToolbars}">
             <Grid ColumnDefinitions="120,*,120">
                 <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="4,3,0,0" Spacing="0">
-                    <TextBlock Text="CTRLV"
+                    <TextBlock Text="CAPX"
                                FontSize="13"
                                FontWeight="Bold"
                                Foreground="#A78BFA"/>

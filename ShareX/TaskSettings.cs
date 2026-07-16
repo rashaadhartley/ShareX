@@ -56,7 +56,7 @@ namespace ShareX
 
         public bool UseDefaultAfterCaptureJob = true;
         public AfterCaptureTasks AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard;
-        public bool ShowCtrlVCapturePreview = true;
+        public bool ShowCapXCapturePreview = true;
 
         public bool UseDefaultAfterUploadJob = true;
         public AfterUploadTasks AfterUploadJob = AfterUploadTasks.CopyURLToClipboard;

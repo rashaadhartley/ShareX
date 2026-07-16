@@ -223,7 +223,7 @@ namespace ShareX
             quickCapture.TaskSettings.Description = "Quick Capture";
             quickCapture.TaskSettings.UseDefaultAfterCaptureJob = false;
             quickCapture.TaskSettings.AfterCaptureJob = AfterCaptureTasks.CopyImageToClipboard;
-            quickCapture.TaskSettings.ShowCtrlVCapturePreview = true;
+            quickCapture.TaskSettings.ShowCapXCapturePreview = true;
 
             return new List<HotkeySettings>
             {

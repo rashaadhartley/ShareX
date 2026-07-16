@@ -2,10 +2,11 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using ShareX.HelpersLib;
 
 namespace ShareX
 {
-    internal sealed class CtrlVLauncherPanel : Panel
+    internal sealed class CapXLauncherPanel : Panel
     {
         private static readonly Color CanvasColor = Color.FromArgb(10, 12, 18);
         private static readonly Color SurfaceColor = Color.FromArgb(20, 24, 35);
@@ -16,7 +17,7 @@ namespace ShareX
         private static readonly Color VioletColor = Color.FromArgb(139, 92, 246);
         private static readonly Color CyanColor = Color.FromArgb(56, 189, 248);
 
-        public CtrlVLauncherPanel(Action quickCapture, Action openEditor, Action openSettings, Action showAdvanced)
+        public CapXLauncherPanel(Action quickCapture, Action openEditor, Action openSettings, Action showAdvanced)
         {
             Dock = DockStyle.Fill;
             BackColor = CanvasColor;
@@ -50,13 +51,22 @@ namespace ShareX
         {
             Panel header = new Panel { Dock = DockStyle.Fill, BackColor = CanvasColor };
 
+            PictureBox mark = new PictureBox
+            {
+                BackColor = CanvasColor,
+                Image = ShareXResources.Logo,
+                Location = new Point(0, 3),
+                Size = new Size(40, 40),
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+
             Label brand = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold),
                 ForeColor = TextColor,
-                Location = new Point(0, 4),
-                Text = "CTRLV"
+                Location = new Point(50, 4),
+                Text = "CapX"
             };
 
             Label product = new Label
@@ -64,7 +74,7 @@ namespace ShareX
                 AutoSize = true,
                 Font = new Font("Segoe UI", 8F, FontStyle.Regular),
                 ForeColor = CyanColor,
-                Location = new Point(0, 28),
+                Location = new Point(50, 28),
                 Text = "CAPTURE WORKSPACE"
             };
 
@@ -73,6 +83,7 @@ namespace ShareX
             settings.Location = new Point(header.Width - settings.Width, 4);
             header.Resize += (_, _) => settings.Left = header.ClientSize.Width - settings.Width;
 
+            header.Controls.Add(mark);
             header.Controls.Add(brand);
             header.Controls.Add(product);
             header.Controls.Add(settings);
@@ -116,7 +127,7 @@ namespace ShareX
             actions.RowStyles.Add(new RowStyle(SizeType.Percent, 70));
             actions.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
 
-            CtrlVActionButton quick = new CtrlVActionButton(
+            CapXActionButton quick = new CapXActionButton(
                 "CAPTURE REGION",
                 "Select an area. It is copied immediately, then a small preview lets you edit, save or dismiss.",
                 "CTRL + PRINT SCREEN",
@@ -209,7 +220,7 @@ namespace ShareX
             return button;
         }
 
-        private sealed class CtrlVActionButton : Control
+        private sealed class CapXActionButton : Control
         {
             private readonly string title;
             private readonly string description;
@@ -218,7 +229,7 @@ namespace ShareX
             private readonly Action action;
             private bool hovered;
 
-            public CtrlVActionButton(string title, string description, string shortcut, Color accent, Action action)
+            public CapXActionButton(string title, string description, string shortcut, Color accent, Action action)
             {
                 this.title = title;
                 this.description = description;

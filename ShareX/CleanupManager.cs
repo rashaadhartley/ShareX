@@ -54,7 +54,7 @@ namespace ShareX
 
                     if (Program.Settings.AutoCleanupLogFiles)
                     {
-                        CleanupFolder(Program.LogsFolder, "CtrlV-Log-*.txt", keepFileCount);
+                        CleanupFolder(Program.LogsFolder, "CapX-Log-*.txt", keepFileCount);
                     }
                 }
             }
